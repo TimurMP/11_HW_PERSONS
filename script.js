@@ -25,14 +25,32 @@ printStats(persons);
 
 
 function printStats(persons) {
+    const  body = document.body;
+    const div = document.createElement("div");
+    div.style.border = '1px solid black';
+    div.style.backgroundColor = 'brown';
+
     let arr = [];
     persons.forEach((p) => arr.push(p.age));
     let max = Math.max(...arr);
     let min = Math.min(...arr);
     const avg = arr.reduce((accum, item) => accum + item, 0) / arr.length;
-    console.log(`Max age is ${max}`);
-    console.log(`Min age is ${min}`);
-    console.log(`Avg age is ${avg}`);
+
+    const maxp = document.createElement("p");
+    maxp.append(`Max age is ${max}`);
+    div.appendChild(maxp);
+    body.appendChild(div);
+    const minp = document.createElement("p");
+    minp.append(`Min age is ${min}`);
+    div.appendChild(minp);
+    body.appendChild(div);
+    const avgp = document.createElement("p");
+    avgp.append(`Avg age is ${avg}`);
+    div.appendChild(avgp);
+    body.appendChild(div);
+    // console.log(`Max age is ${max}`);
+    // console.log(`Min age is ${min}`);
+    // console.log(`Avg age is ${avg}`);
 
 
 }
