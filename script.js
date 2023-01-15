@@ -1,5 +1,7 @@
 //id, firstName, lastName, age
 
+
+
 const persons = [];
 let inputData = prompt('Enter person data, separated by ","');
 
@@ -37,8 +39,16 @@ function printStats(persons) {
 
 
 function printPersons(persons) {
-    persons.forEach((p, i) => console.log(`${i + 1}) ${p.id}, ${p.fullName()}, age - ${p.age}`));
-
+    const  body = document.body;
+    const div = document.createElement("div");
+    div.style.border = '1px solid black';
+    div.style.backgroundColor = 'orange';
+    persons.forEach((p, i) => {
+        const pp=document.createElement("p");
+        pp.append(p.toString());
+        div.appendChild(pp);
+    });
+    body.appendChild(div);
 }
 
 function parsePersonInput(inputData) {
@@ -67,4 +77,11 @@ function Person(id, firstName, lastName, age) {
     this.fullName = function () {
         return `${this.firstName} ${this.lastName}`;
     }
+    this.toString = function () {
+        return `ID: ${this.id}, Name: ${this.fullName()}, Age: ${this.age}`
 }
+
+
+
+}
+
