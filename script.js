@@ -92,7 +92,7 @@ function addPersonOnButtonClick() {
 
 }
 
-function parsePersonInput(event) {
+function parsePersonInput() {
     // const valArr = [idInput.value, nameInput.value, lastNameInput.value, ageInput.value];
     // const persons = [];
     // valArr.push(idInput.value);
