@@ -1,9 +1,13 @@
 //id, firstName, lastName, age
 
 
-
 const persons = [];
-let inputData = prompt('Enter person data, separated by ","');
+addp.addEventListener('click', addPersonOnButtonClick);
+showAll.addEventListener('click', e => printPersons(persons));
+stats.addEventListener('click', e => printStats(persons));
+
+
+// let inputData = prompt('Enter person data, separated by ","');
 
 //      55, 'Nathan', 'Drake', 30
 //      1, 'Nathan', 'Drake', 20
@@ -12,20 +16,20 @@ let inputData = prompt('Enter person data, separated by ","');
 //      4, 'Nathan', 'Drake', 23
 
 
-while (inputData) {
-    const pers = parsePersonInput(inputData);
-    addPersonToArr(pers, persons)
-    inputData = prompt('Enter person data, separated by ","');
-}
+// while (inputData) {
+//     const pers = parsePersonInput(inputData);
+//     addPersonToArr(pers, persons)
+//     inputData = prompt('Enter person data, separated by ","');
+// }
 
 
-printPersons(persons);
-console.log("=============")
-printStats(persons);
+// printPersons(persons);
+// console.log("=============")
+// printStats(persons);
 
 
 function printStats(persons) {
-    const  body = document.body;
+    const body = document.body;
     const div = document.createElement("div");
     div.style.border = '1px solid black';
     div.style.backgroundColor = 'brown';
@@ -57,22 +61,51 @@ function printStats(persons) {
 
 
 function printPersons(persons) {
-    const  body = document.body;
+
+    const body = document.body;
+
     const div = document.createElement("div");
     div.style.border = '1px solid black';
     div.style.backgroundColor = 'orange';
     persons.forEach((p, i) => {
-        const pp=document.createElement("p");
+        const pp = document.createElement("p");
         pp.append(p.toString());
         div.appendChild(pp);
     });
     body.appendChild(div);
 }
 
-function parsePersonInput(inputData) {
-    inputData.trim();
-    const valArr = inputData.split(",");
-    return new Person(valArr[0], valArr[1], valArr[2], +valArr[3]);
+// function parsePersonInput(inputData) {
+//     inputData.trim();
+//     const valArr = inputData.split(",");
+//     return new Person(valArr[0], valArr[1], valArr[2], +valArr[3]);
+// }
+
+function addPersonOnButtonClick() {
+    const pers = parsePersonInput();
+    addPersonToArr(pers, persons);
+    console.log(persons);
+    idInput.value = '';
+    nameInput.value = '';
+    lastNameInput.value = '';
+    ageInput.value = '';
+
+}
+
+function parsePersonInput(event) {
+    // const valArr = [idInput.value, nameInput.value, lastNameInput.value, ageInput.value];
+    // const persons = [];
+    // valArr.push(idInput.value);
+    // console.log('---------')
+    // console.log(valArr);
+    // for (let i = 0; i < people.children.length; i++) {
+    //     valArr.push(people.children[i]);
+    // }
+    // valArr.forEach(n => {
+    //     persons.push(n.value);
+    // })
+    // console.log(persons);
+    return new Person(idInput.value, nameInput.value, lastNameInput.value, +ageInput.value);
 }
 
 
@@ -97,8 +130,7 @@ function Person(id, firstName, lastName, age) {
     }
     this.toString = function () {
         return `ID: ${this.id}, Name: ${this.fullName()}, Age: ${this.age}`
-}
-
+    }
 
 
 }
