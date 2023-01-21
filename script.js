@@ -11,7 +11,14 @@ addPerson.onclick = function () {
 
     if (person){
         const li = document.createElement('li');
-        li.append(document.createTextNode(person.toString()));
+
+        const buttonDel = document.createElement("button");
+        buttonDel.append(document.createTextNode('X'));
+        buttonDel.classList.add('del');
+        buttonDel.onclick = removeParentElement;
+
+
+        li.append(document.createTextNode(person.toString()), buttonDel);
         personsList.append(li);
     }
 
@@ -20,28 +27,53 @@ addPerson.onclick = function () {
 }
 
 
-showPersons.onclick = function () {
-    printPersons(persons);
+function removeParentElement(e) {
+    const valArr = e.currentTarget.parentElement.innerText;
+    // console.log(e.currentTarget.parentElement.innerText);
+    const id = getPersonId(valArr);
+    const index = findPerson(persons, id);
+    console.log(id);
+    // const person =  new Person(valArr[0], valArr[1], valArr[2], +valArr[3]);
+    // console.log(person);
+    // const person = e.currentTarget.parentElement.innerText;
+    // let index = persons.indexOf(person);
+/*    console.log(persons);
+    console.log(index);*/
+    // if (index !== -1) {
+    persons.splice(index, 1);
+    // }
+    e.currentTarget.parentElement.remove();
+
 }
+
+
+// showPersons.onclick = function () {
+//     printPersons(persons);
+// }
 
 
 calcStats.onclick = function () {
     printStats(persons);
 }
 
+function getPersonId(string){
+    const idText = string.split(",");
+    return idText[0].substring(4);
+}
+
 function findPerson(persons, id) {
     return persons.findIndex(p => p.id === id);
 }
 
-function printPersons(persons) {
-    while(personsList.firstElementChild){
-        personsList.removeChild(personsList.firstElementChild);
-    }
-    persons.forEach(p => {
-        const li = createInfoElement(p.toString(), 'li');
-        personsList.appendChild(li);
-    });
-}
+// function printPersons(persons) {
+//     while(personsList.firstElementChild){
+//         personsList.removeChild(personsList.firstElementChild);
+//     }
+//     persons.forEach(p => {
+//         const li = createInfoElement(p.toString(), 'li');
+//         personsList.appendChild(li);
+//     });
+// }
 
 function printStats(persons) {
     if (persons.length) {
