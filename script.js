@@ -5,21 +5,20 @@ addPerson.onclick = function () {
     const person = new Person(personId.value.trim(), firstName.value.trim(), lastName.value.trim(), age.value);
     if (findPerson(persons, person.id) === -1) {
         persons.push(person);
+        if (person) {
+            const li = document.createElement('li');
+
+            const buttonDel = document.createElement("button");
+            buttonDel.append(document.createTextNode('X'));
+            buttonDel.classList.add('del');
+            buttonDel.onclick = removeParentElement;
+
+
+            li.append(document.createTextNode(person.toString()), buttonDel);
+            personsList.append(li);
+        }
     } else {
         alert(`Person with id: ${person.id} exists`);
-    }
-
-    if (person){
-        const li = document.createElement('li');
-
-        const buttonDel = document.createElement("button");
-        buttonDel.append(document.createTextNode('X'));
-        buttonDel.classList.add('del');
-        buttonDel.onclick = removeParentElement;
-
-
-        li.append(document.createTextNode(person.toString()), buttonDel);
-        personsList.append(li);
     }
 
 
@@ -37,8 +36,8 @@ function removeParentElement(e) {
     // console.log(person);
     // const person = e.currentTarget.parentElement.innerText;
     // let index = persons.indexOf(person);
-/*    console.log(persons);
-    console.log(index);*/
+    /*    console.log(persons);
+        console.log(index);*/
     // if (index !== -1) {
     persons.splice(index, 1);
     // }
@@ -56,7 +55,7 @@ calcStats.onclick = function () {
     printStats(persons);
 }
 
-function getPersonId(string){
+function getPersonId(string) {
     const idText = string.split(",");
     return idText[0].substring(4);
 }
@@ -96,17 +95,29 @@ function printStats(persons) {
     }
 }
 
-function Person(id, firstName, lastName, age) {
+function Person(id, firstName, lastName, birthday) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.age = +age;
+    this.birthday = new Date(birthday);
+    this.age = ageParser(birthday);
     this.fullName = function () {
         return `${this.firstName} ${this.lastName}`
     }
     this.toString = function () {
         return `ID: ${this.id}, Name: ${this.fullName()}, Age: ${this.age}`
     }
+}
+
+function ageParser(birthday) {
+    let today = new Date();
+    let bd = new Date(birthday);
+    let age = today.getFullYear() - bd.getFullYear();
+    let m = today.getMonth() - bd.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < bd.getDate())) {
+        age--;
+    }
+    return age;
 }
 
 function createInfoElement(content, tag) {
