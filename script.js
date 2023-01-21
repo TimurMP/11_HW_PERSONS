@@ -8,11 +8,23 @@ addPerson.onclick = function () {
     } else {
         alert(`Person with id: ${person.id} exists`);
     }
+
+    if (person){
+        const li = document.createElement('li');
+        li.append(document.createTextNode(person.toString()));
+        personsList.append(li);
+    }
+
+
     personId.value = firstName.value = lastName.value = age.value = '';
 }
+
+
 showPersons.onclick = function () {
     printPersons(persons);
 }
+
+
 calcStats.onclick = function () {
     printStats(persons);
 }
