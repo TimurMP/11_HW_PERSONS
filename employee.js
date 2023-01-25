@@ -1,4 +1,5 @@
 'use strict'
+
 class Employee extends Person {
     constructor(id, firstName, lastName, birthDate, salary) {
         super(id, firstName, lastName, birthDate);
@@ -6,7 +7,7 @@ class Employee extends Person {
     }
 
     get salary() {
-        return this._salary;
+        return Number(this._salary);
     }
 
     set salary(value) {

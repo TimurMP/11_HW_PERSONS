@@ -42,8 +42,19 @@ class Company {
 
     getAvgAge() {
         if (this._employees.length){
-            const start = this._employees[0].getAge();
             return this._employees.reduce((res, p) => p.getAge() + res, 0) / this._employees.length;
+        }}
+
+
+    totalSalary() {
+        if (this._employees.length){
+            const start = this._employees[0].salary;
+            return this._employees.reduce((res, p) => p.salary + res, 0);
+        }}
+
+    avglSalary() {
+        if (this._employees.length){
+            return this._employees.reduce((res, p) => p.salary + res, 0) / this._employees.length;
         }}
 
 
