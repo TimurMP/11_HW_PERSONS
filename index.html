@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <title>Persons</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./utils.js" defer></script>
     <script src="./script.js" defer></script>
+    <script src="./person.js" defer></script>
+    <script src="./employee.js" defer></script>
+    <script src="./company.js" defer></script>
+
 </head>
 <body>
 <div>
@@ -17,12 +22,11 @@
     <label>Last name:
         <input type="text" id="lastName">
     </label>
-    <label>Birth Date:
-        <input type="text" min="0" id="age" placeholder="yyyy-mm-dd">
+    <label>Age:
+        <input type="date" id="age">
     </label>
 </div>
 <button id="addPerson">Add person</button>
-<!--<button id="showPersons">Show persons</button>-->
 <button id="calcStats">Get stats</button>
 <div id="stats">
     <h2>Stats</h2>
