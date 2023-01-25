@@ -1,7 +1,6 @@
 'use strict'
 
 const company1 = new Company();
-
 addPerson.onclick = function () {
     const employee = new Employee(personId.value.trim(), firstName.value.trim(), lastName.value.trim(), age.value, salary.value.trim());
     const employeeAdded = company1.addEmployee(employee);
