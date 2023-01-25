@@ -59,7 +59,7 @@ class Employee extends Person {
     }
 }
 
-class Company {
+class Company1 {
     constructor() {
         this._employees = [];
     }

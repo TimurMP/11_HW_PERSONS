@@ -13,3 +13,9 @@ function createInfoElement(content, tag) {
     element.appendChild(text);
     return element;
 }
+
+function clearStats() {
+    if (stats.firstElementChild.nextElementSibling) {
+        stats.removeChild(stats.firstElementChild.nextElementSibling);
+    }
+}
